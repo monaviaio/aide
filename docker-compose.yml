@@ -23,6 +23,7 @@ services:
       # 工作空间
       - .storage/workspaces:/workspaces
       - .initial/config/auth/auth.json:/root/.local/share/opencode/auth.json
+      - .initial/claude/skills:/root/.claude/skills
     
     # 重启策略
     restart: unless-stopped
