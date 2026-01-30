@@ -23,7 +23,4 @@ rad.json
 TestResults.xml
 # CodeNomad Docker
 .env
-workspaces/
-config/Code/User/settings.json
-.initial/
 .DS_Store
