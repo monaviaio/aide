@@ -1,56 +1,58 @@
-**monaviaio/aide** 是一个基于 Docker 的 AI 编码助手部署仓库。以下是详细分析：
+# Aide - AI Coding Assistant Deployment
 
-## 📦 项目概述
+**monaviaio/aide** is a Docker-based deployment repository for AI coding assistants. [中文文档](./README_zh.md)
 
-这是一个**预配置的 CodeNomad 部署环境**，通过 Docker 容器快速启动一个完整的 AI 编码助手服务。
+## 📦 Overview
 
-## 🏗️ 核心组件
+A **pre-configured CodeNomad deployment environment** that quickly launches a complete AI coding assistant service through Docker containers.
 
-1. **CodeNomad** - AI 编码助手的命令中心
-   - 由 NeuralNomadsAI 开发的开源项目
-   - 提供 Web 界面访问 AI 编码助手
-   - 支持多种 AI 模型（通过 OpenRouter API）
+## 🏗️ Core Components
 
-2. **oh-my-opencode-slim** - 轻量级 AI 代理编排插件
-   - 将 AI 助手从单一执行者升级为"管理者"
-   - 支持多代理协作（Explorer、Oracle、Librarian、Designer、Fixer 等）
-   - 大幅减少 token 消耗的优化版本
+1. **CodeNomad** - Command center for AI coding assistants
+   - Open-source project by NeuralNomadsAI
+   - Provides web interface access to AI coding assistants
+   - Supports multiple AI models (via OpenRouter API)
 
-3. **OpenCode** - AI 编码工具
-   - 底层 AI 编码引擎
+2. **oh-my-opencode-slim** - Lightweight AI agent orchestration plugin
+   - Upgrades AI assistant from single executor to "manager"
+   - Supports multi-agent collaboration (Explorer, Oracle, Librarian, Designer, Fixer, etc.)
+   - Optimized version that significantly reduces token consumption
 
-## 🚀 主要功能
+3. **OpenCode** - AI coding toolkit
+   - Underlying AI coding engine
 
-- **Web 界面**：通过浏览器访问 AI 编码助手（默认端口 8080）
-- **多代理系统**：自动将复杂任务委派给专门的子代理
-- **持久化存储**：工作空间和配置文件通过 Docker volumes 保存
-- **认证支持**：可配置用户名/密码或跳过认证
-- **OpenRouter 集成**：使用 OpenRouter API 访问多种 LLM 模型
+## 🚀 Key Features
 
-## 📁 目录结构
+- **Web Interface**: Access AI coding assistant through browser (default port 8080)
+- **Multi-Agent System**: Automatically delegates complex tasks to specialized sub-agents
+- **Persistent Storage**: Workspaces and configuration files saved via Docker volumes
+- **Authentication Support**: Configurable username/password or skip authentication
+- **OpenRouter Integration**: Access multiple LLM models through OpenRouter API
+
+## 📁 Directory Structure
 
 ```
 .initial/
-  config/         # CodeNomad 和 OpenCode 配置
+  config/         # CodeNomad and OpenCode configuration
     auth/
-      auth.json   # OpenRouter API 密钥配置
-  claude/skills/  # Claude 技能定义
+      auth.json   # OpenRouter API key configuration
+  claude/skills/  # Claude skill definitions
 .storage/
-  workspaces/     # 持久化工作空间
+  workspaces/     # Persistent workspaces
 ```
 
-## 🔧 使用方式
+## 🔧 Usage
 
-1. 配置 `.initial/config/auth/auth.json` 中的 OpenRouter API 密钥
-2. 设置环境变量（用户名、密码、端口等）
-3. 运行 `docker-compose up -d` 启动服务
-4. 访问 `http://localhost:28080` 使用 AI 编码助手
+1. Configure OpenRouter API key in `.initial/config/auth/auth.json`
+2. Set environment variables (username, password, port, etc.)
+3. Run `docker-compose up -d` to start the service
+4. Access `http://localhost:28080` to use the AI coding assistant
 
-## 💡 适用场景
+## 💡 Use Cases
 
-- 需要快速部署 AI 编码助手的开发者
-- 想要多代理协作能力的团队
-- 需要自托管 AI 编码环境的组织
-- 希望通过 OpenRouter 使用多种 LLM 的用户
+- Developers needing quick AI coding assistant deployment
+- Teams wanting multi-agent collaboration capabilities
+- Organizations requiring self-hosted AI coding environments
+- Users wanting to access multiple LLMs through OpenRouter
 
-总结：这是一个**开箱即用的 AI 编码助手部署方案**，集成了先进的多代理编排能力，通过 docker compose实现一键部署。
+**Summary**: A **ready-to-use AI coding assistant deployment solution** with advanced multi-agent orchestration capabilities, deployable with one command via docker compose.
