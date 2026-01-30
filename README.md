@@ -1,6 +1,7 @@
 ### Change key to your own
 
-.initial/config/auth/auth.json
+`.initial/config/auth/auth.json`
+
 ```
 {
     "openrouter": {
