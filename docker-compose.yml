@@ -1,0 +1,28 @@
+services:
+  codenomad:
+    # 使用本地 Dockerfile 构建镜像
+    build: .
+    image: codenomad:latest
+    container_name: codenomad
+    
+    # 端口映射
+    ports:
+      - "${CODENOMAD_PORT:-8080}:8080"
+    
+    # 环境变量
+    environment:
+      - CODENOMAD_SERVER_PASSWORD=${CODENOMAD_PASSWORD}
+      - CODENOMAD_SERVER_USERNAME=${CODENOMAD_USERNAME:-codenomad}
+      - CODENOMAD_SKIP_AUTH=${CODENOMAD_SKIP_AUTH:-false}
+      - CODENOMAD_WORK_DIR=/workspaces
+      - OPENROUTER_APIKEY=${OPENROUTER_APIKEY}
+    
+    # 卷挂载
+    volumes:
+      # CodeNomad 配置目录（包含 open-code-slim 配置）
+      - .initial/config:/root/.config
+      # 工作空间
+      - .storage/workspaces:/workspaces
+    
+    # 重启策略
+    restart: unless-stopped

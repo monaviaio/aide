@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose*.yml
+.dockerignore
+
+# 环境变量
+.env
+.env.example
+
+# 文档
+*.md
+LICENSE
+
+# 脚本
+*.sh
+
+# 数据目录
+workspaces/
+config/
+.initial/
+.storage/
+
+# 系统文件
+.DS_Store
