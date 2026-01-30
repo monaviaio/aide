@@ -1,0 +1,186 @@
+{
+  "preset": "strongest-coding-2026-optimized",
+  "presets": {
+    "zen-free": {
+      "orchestrator": {
+        "model": "opencode/big-pickle",
+        "skills": [
+          "*"
+        ],
+        "mcps": [
+          "websearch"
+        ]
+      },
+      "oracle": {
+        "model": "opencode/big-pickle",
+        "variant": "high",
+        "skills": [],
+        "mcps": []
+      },
+      "librarian": {
+        "model": "opencode/big-pickle",
+        "variant": "low",
+        "skills": [],
+        "mcps": [
+          "websearch",
+          "context7",
+          "grep_app"
+        ]
+      },
+      "explorer": {
+        "model": "opencode/big-pickle",
+        "variant": "low",
+        "skills": [],
+        "mcps": []
+      },
+      "designer": {
+        "model": "opencode/big-pickle",
+        "variant": "medium",
+        "skills": [
+          "agent-browser"
+        ],
+        "mcps": []
+      },
+      "fixer": {
+        "model": "opencode/big-pickle",
+        "variant": "low",
+        "skills": [],
+        "mcps": []
+      }
+    },
+    "strongest-coding-2026-optimized": {
+      "orchestrator": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.7,
+        "variant": "high",
+        "skills": [
+          "*"
+        ],
+        "mcps": [
+          "websearch"
+        ],
+        "comment": "Agent式编程 / 复杂编排 / 架构重构 - Claude Sonnet 4.5 最佳平衡"
+      },
+      "oracle": {
+        "model": "openrouter/anthropic/claude-opus-4.5",
+        "temperature": 0.3,
+        "variant": "high",
+        "skills": [],
+        "mcps": [],
+        "comment": "代码审计 / Code Review / 深度安全检查 - Claude Opus 4.5 深度推理"
+      },
+      "librarian": {
+        "model": "openrouter/google/gemini-3-pro-preview",
+        "temperature": 0.1,
+        "variant": "low",
+        "skills": [],
+        "mcps": [
+          "websearch",
+          "context7",
+          "grep_app"
+        ],
+        "comment": "快速检索 / 知识查询 - Gemini 3 pro 高速推理"
+      },
+      "explorer": {
+        "model": "openrouter/google/gemini-3-flash-preview",
+        "temperature": 0.1,
+        "variant": "low",
+        "skills": [],
+        "mcps": [],
+        "comment": "快速代码库搜索 - Gemini 3 pro 高速扫描"
+      },
+      "designer": {
+        "model": "openrouter/google/gemini-3-flash-preview",
+        "temperature": 0.5,
+        "variant": "medium",
+        "skills": [
+          "playwright"
+        ],
+        "mcps": [],
+        "comment": "前端 / UI实现 / 快速原型 / 视觉化布局 - Gemini 3 Pro 多模态能力强"
+      },
+      "fixer": {
+        "model": "openrouter/anthropic/claude-opus-4.5",
+        "temperature": 0.3,
+        "variant": "high",
+        "skills": [],
+        "mcps": [],
+        "comment": "后端逻辑 / 复杂业务规则 / 架构重构 - Claude Opus 4.5 前沿推理"
+      },
+      "pm": {
+        "model": "openrouter/anthropic/claude-opus-4.5",
+        "temperature": 0.3,
+        "variant": "high",
+        "skills": [],
+        "mcps": [],
+        "comment": "产品经理 Requirements engineering and product planning - Claude Opus 4.5 前沿推理"
+      }
+    },
+    "strongest-coding-2026": {
+      "orchestrator": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.7,
+        "variant": "high",
+        "skills": [
+          "*"
+        ],
+        "mcps": [
+          "websearch"
+        ],
+        "comment": "Agent式编程 / 复杂编排 / 架构重构 - Claude Sonnet 4 最新最强"
+      },
+      "oracle": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 1.0,
+        "variant": "high",
+        "skills": [],
+        "mcps": [],
+        "comment": "代码审计 / Code Review / 深度推理 - O1 推理模型"
+      },
+      "librarian": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.1,
+        "variant": "low",
+        "skills": [],
+        "mcps": [
+          "websearch",
+          "context7",
+          "grep_app"
+        ],
+        "comment": "快速检索 / 知识查询 - Gemini 3.0 Flash"
+      },
+      "explorer": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.1,
+        "variant": "low",
+        "skills": [],
+        "mcps": [],
+        "comment": "快速代码库搜索 - Gemini 3.0 Flash"
+      },
+      "designer": {
+        "model": "google/gemini-2.0-flash-exp:free",
+        "temperature": 0.5,
+        "variant": "medium",
+        "skills": [
+          "playwright"
+        ],
+        "mcps": [],
+        "comment": "前端 / UI实现 / 快速原型 - Gemini 3.0 Flash"
+      },
+      "fixer": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.3,
+        "variant": "medium",
+        "skills": [],
+        "mcps": [],
+        "comment": "后端逻辑 / 复杂业务规则 - Claude sonnet 4.5 代码能力最强"
+      }
+    }
+  },
+
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60
+  }
+}

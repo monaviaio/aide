@@ -1,0 +1,85 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/anthropic/claude-sonnet-4.5",
+  "plugin": [
+    "oh-my-opencode-slim"
+  ],
+  "provider": {
+    "openrouter": {
+      "models": {
+        "anthropic/claude-sonnet-4.5": {
+          "name": "Claude Sonnet 4.5",
+          "attachment": true,
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "anthropic/claude-opus-4.5": {
+          "name": "Claude Opus 4.5",
+          "attachment": true,
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "anthropic/claude-3.5-haiku": {
+          "name": "Claude 3.5 Haiku",
+          "attachment": true,
+          "limit": {
+            "context": 200000,
+            "output": 8000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "google/gemini-3-pro-preview": {
+          "name": "Gemini 3 Pro Preview",
+          "thinking": true,
+          "attachment": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

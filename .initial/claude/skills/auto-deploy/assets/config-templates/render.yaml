@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: my-web-app
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+
+  # Optional: Add database
+  # - type: pserv
+  #   name: postgres
+  #   env: docker
+  #   plan: free
+  #   databases:
+  #     - name: myapp_db
+  #       databaseName: myapp
+  #       user: myapp
+
+  # Optional: Add Redis
+  # - type: redis
+  #   name: my-redis
+  #   ipAllowList: []
+  #   plan: free
+
+  # Optional: Background worker
+  # - type: worker
+  #   name: queue-worker
+  #   env: node
+  #   buildCommand: npm install
+  #   startCommand: npm run worker
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
+
+  # Optional: Cron job
+  # - type: cron
+  #   name: daily-cleanup
+  #   env: node
+  #   buildCommand: npm install
+  #   startCommand: npm run cleanup
+  #   schedule: "0 2 * * *"  # Daily at 2 AM UTC

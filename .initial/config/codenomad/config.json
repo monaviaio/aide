@@ -1,0 +1,31 @@
+{
+  "preferences": {
+    "showThinkingBlocks": false,
+    "thinkingBlocksExpansion": "expanded",
+    "showTimelineTools": true,
+    "lastUsedBinary": "opencode",
+    "environmentVariables": {},
+    "modelRecents": [],
+    "modelFavorites": [],
+    "modelThinkingSelections": {},
+    "diffViewMode": "split",
+    "toolOutputExpansion": "expanded",
+    "diagnosticsExpansion": "expanded",
+    "showUsageMetrics": true,
+    "autoCleanupBlankSessions": true,
+    "listeningMode": "local"
+  },
+  "recentFolders": [
+    {
+      "path": "/workspaces/demo1",
+      "lastAccessed": 1769761971216
+    }
+  ],
+  "opencodeBinaries": [
+    {
+      "path": "opencode",
+      "lastUsed": 1769761971216
+    }
+  ],
+  "theme": "dark"
+}

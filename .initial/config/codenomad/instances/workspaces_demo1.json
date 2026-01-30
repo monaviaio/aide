@@ -1,0 +1,17 @@
+{
+  "messageHistory": [
+    "ping all agents",
+    "ping all agents",
+    "ping all agents",
+    "ping all agents",
+    "ping all agents",
+    "ping all agents",
+    "ping all agents"
+  ],
+  "agentModelSelections": {
+    "orchestrator": {
+      "providerId": "openrouter",
+      "modelId": "anthropic/claude-sonnet-4.5"
+    }
+  }
+}
