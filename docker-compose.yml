@@ -15,7 +15,6 @@ services:
       - CODENOMAD_SERVER_USERNAME=${CODENOMAD_USERNAME:-codenomad}
       - CODENOMAD_SKIP_AUTH=${CODENOMAD_SKIP_AUTH:-false}
       - CODENOMAD_WORK_DIR=/workspaces
-      - OPENROUTER_APIKEY=${OPENROUTER_APIKEY}
     
     # 卷挂载
     volumes:
@@ -23,6 +22,7 @@ services:
       - .initial/config:/root/.config
       # 工作空间
       - .storage/workspaces:/workspaces
+      - .initial/config/auth/auth.json:/root/.local/share/opencode/auth.json
     
     # 重启策略
     restart: unless-stopped
