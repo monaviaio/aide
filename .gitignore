@@ -1,6 +1,7 @@
 .storage/
 .initial/config/auth/auth.json
 .initial/config/codenomad/instances/*
+.initial/config/codenomad/ui/
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
 #launch.json folder

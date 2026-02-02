@@ -1,6 +1,6 @@
 {
   "preferences": {
-    "showThinkingBlocks": false,
+    "showThinkingBlocks": true,
     "thinkingBlocksExpansion": "expanded",
     "showTimelineTools": true,
     "lastUsedBinary": "opencode",
@@ -17,14 +17,14 @@
   },
   "recentFolders": [
     {
-      "path": "/workspaces/demo1",
-      "lastAccessed": 1769765672024
+      "path": "/workspaces/monavia",
+      "lastAccessed": 1770048686759
     }
   ],
   "opencodeBinaries": [
     {
       "path": "opencode",
-      "lastUsed": 1769765672024
+      "lastUsed": 1770048686760
     }
   ],
   "theme": "dark"
