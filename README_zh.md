@@ -1,23 +1,36 @@
 <div align="center">
- 🚀 Aide - AI 编码助手部署方案
+
+# 🚀 Aide - AI 编码助手部署方案
+
 **一键部署 | 多代理协作 | 生产就绪**
+
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-orange)](https://opencode.ai)
+
 [English](./README.md) | [简体中文](#)
+
 </div>
+
 ---
- 📦 项目概述
-**monaviaio/aide** 是一个生产就绪的 AI 编码助手 Docker 部署方案。一条命令即可部署完整的 AI 开发环境，内置**多代理协作**能力。
- 🎯 核心特性
+
+## 📦 项目概述
+
+**monaviaio/aide** 是一个生产就绪的 AI 编码助手 Docker 部署方案。一条命令即可部署完整的 AI 开发环境,内置**多代理协作**能力。
+
+## 🎯 核心特性
 - 🌐 **Web 界面**：通过浏览器访问 AI 编码助手（端口 8080）
 - 🤖 **多代理系统**：6+ 个专业 AI 代理协同工作
 - 💾 **持久化工作空间**：通过 Docker volumes 保存所有工作
 - 🔐 **安全认证**：可配置用户名/密码保护
 - 🎨 **模型灵活性**：通过 OpenRouter 混合使用任意 LLM 模型
 - ⚡ **预配置优化**：开箱即用的最优代理配置
+
 ---
- 🏗️ 架构图
+
+## 🏗️ 架构图
+
+```
 ┌─────────────────────────────────────────────────────────┐
 │                  用户（浏览器）                           │
 │                   http://localhost:8080                  │
@@ -62,63 +75,109 @@
 │                   OpenRouter API                         │
 │     (Claude Opus 4.5, Sonnet 4.5, Gemini 3 Pro...)     │
 └─────────────────────────────────────────────────────────┘
+```
+
 ---
 ## 🚀 快速开始
 ### 前置要求
 - 已安装 **Docker** 和 **Docker Compose**
 - **OpenRouter API 密钥**（[在此获取](https://openrouter.ai/keys)）
 ### 安装步骤
+
 **1. 克隆仓库**
+
 ```bash
 git clone https://github.com/monaviaio/aide.git
 cd aide
-2. 配置 OpenRouter API 密钥
-编辑 .initial/config/auth/auth.json：
+```
+
+**2. 配置 OpenRouter API 密钥**
+
+编辑 `.initial/config/auth/auth.json`：
+
+```json
 {
-    openrouter: {
-        type: api,
-        key: sk-or-v1-你的API密钥
+    "openrouter": {
+        "type": "api",
+        "key": "sk-or-v1-你的API密钥"
     }
 }
-3. 设置环境变量
-复制 .env.example 为 .env 并配置：
+```
+
+**3. 设置环境变量**
+
+复制 `.env.example` 为 `.env` 并配置：
+
+```bash
 cp .env.example .env
-编辑 .env：
+```
+
+编辑 `.env`：
+
+```env
 # 必填：设置一个安全的密码
 CODENOMAD_PASSWORD=你的安全密码
+
 # 可选：自定义这些配置
 CODENOMAD_USERNAME=codenomad
 CODENOMAD_PORT=8080
 CODENOMAD_SKIP_AUTH=false
-4. 启动服务
+```
+
+**4. 启动服务**
+
+```bash
 docker-compose up -d
-5. 访问 Web 界面
+```
+
+**5. 访问 Web 界面**
+
 在浏览器中打开：
+
+```
 http://localhost:8080
+```
+
 使用配置的用户名和密码登录。
-6. 验证代理工作正常
+
+**6. 验证代理工作正常**
+
 在 CodeNomad 界面中输入：
+
+```
 ping all agents
+```
+
 你应该能看到所有 6 个代理的响应。
+
 ---
-🏛️ 核心组件
-1. CodeNomad - 命令中心
-功能：
+
+## 🏛️ 核心组件
+
+### 1. CodeNomad - 命令中心
+
+**功能：**
 - 提供基于 Web 的 AI 编码助手访问
 - 管理工作空间和文件操作
 - 处理认证和安全
-主要特性：
+
+**主要特性：**
 - 浏览器 IDE 体验
 - 多工作空间支持
 - 通过 Docker volumes 持久化存储
-项目地址： NeuralNomadsAI/CodeNomad (https://github.com/NeuralNomadsAI)
+
+**项目地址：** [NeuralNomadsAI/CodeNomad](https://github.com/NeuralNomadsAI)
+
 ---
-2. oh-my-opencode-slim - 神殿（Pantheon）
-功能：
+
+### 2. oh-my-opencode-slim - 神殿（Pantheon）
+
+**功能：**
 - 将 AI 助手从单一执行者升级为团队管理者
 - 自动将复杂任务委派给专业代理
 - 通过智能路由优化 token 使用
-6 个代理：
+
+**6 个代理：**
 <table>
   <tr>
     <th>代理</th>
@@ -163,29 +222,38 @@ ping all agents
     <td>Claude Opus 4.5</td>
   </tr>
 </table>
-主要特性：
+
+**主要特性：**
 - 🎯 自动任务委派：Orchestrator 将任务路由到合适的专家
 - 💰 成本优化：仅在需要时使用昂贵模型
 - ⚡ 并行执行：多个代理可同时工作
 - 🎨 可自定义预设：预配置的最优设置
 - 🔧 模型灵活性：为任意代理分配任意模型
-配置预设：
+
+**配置预设：**
+
 本部署包含两个预设：
-1. strongest-coding-2026-optimized（默认）
+1. **strongest-coding-2026-optimized**（默认）
    - 关键思考使用 Claude Opus 4.5（Oracle、Fixer）
    - 快速操作使用 Gemini 3 Pro（Explorer、Librarian、Designer）
    - 成本与性能平衡
-2. zen-free
+
+2. **zen-free**
    - 仅使用免费层模型
    - 适合学习和实验
-项目地址： alvinunreal/oh-my-opencode-slim (https://github.com/alvinunreal/oh-my-opencode-slim)
+
+**项目地址：** [alvinunreal/oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim)
+
 ---
-3. newtype-profile - 配置管理
-功能：
+
+### 3. newtype-profile - 配置管理
+
+**功能：**
 - 管理用户偏好和代理配置
 - 提供内容创作工作流（改编自 oh-my-opencode）
 - 包含用于内容工作的额外代理（研究员、作家、编辑、事实核查员）
-额外代理：
+
+**额外代理：**
 | 代理 | 角色 | 使用场景 |
 |-------|------|----------|
 | Researcher<br/>（研究员） | 情报收集 | Web 研究、趋势分析 |
@@ -194,22 +262,33 @@ ping all agents
 | Fact-Checker<br/>（事实核查员） | 验证 | 来源验证、准确性检查 |
 | Archivist<br/>（档案管理员） | 知识库 | 内部文档检索 |
 | Extractor<br/>（提取器） | 格式处理 | PDF/图像内容提取 |
-主要特性：
+
+**主要特性：**
 - 🎭 双模式 Chief：思考伙伴 + 执行协调员
 - 📚 记忆系统：跨会话知识持久化
 - 🔄 自动配置：首次运行智能设置
 - 🎨 内置技能：super-analyst、super-writer、playwright
-项目地址： newtype-01/newtype-profile (https://github.com/newtype-01/newtype-profile)
+
+**项目地址：** [newtype-01/newtype-profile](https://github.com/newtype-01/newtype-profile)
+
 ---
-4. OpenCode - 引擎
-功能：
+
+### 4. OpenCode - 引擎
+
+**功能：**
 - 核心 AI 编码引擎
 - 工具集成层
 - MCP（模型上下文协议）支持
-项目地址： OpenCode.ai (https://opencode.ai)
+
+**项目地址：** [OpenCode.ai](https://opencode.ai)
+
 ---
-⚙️ 配置指南
-目录结构
+
+## ⚙️ 配置指南
+
+### 目录结构
+
+```
 aide/
 ├── .initial/                    # 初始配置（复制到容器）
 │   ├── config/
@@ -227,243 +306,374 @@ aide/
 ├── Dockerfile                  # 容器镜像
 ├── .env                        # 环境变量
 └── README.md
-环境变量
-编辑 .env 进行自定义：
+```
+
+### 环境变量
+
+编辑 `.env` 进行自定义：
 | 变量 | 默认值 | 描述 |
 |----------|---------|-------------|
 | CODENOMAD_PASSWORD | 必填 | Web 访问密码 |
 | CODENOMAD_USERNAME | codenomad | Web 访问用户名 |
 | CODENOMAD_PORT | 8080 | 外部端口映射 |
 | CODENOMAD_SKIP_AUTH | false | 跳过认证（仅在 VPN/代理后使用） |
-模型配置
-可用模型（通过 OpenRouter）：
-编辑 .initial/config/opencode/opencode.json 添加或修改模型：
+
+### 模型配置
+
+**可用模型（通过 OpenRouter）：**
+
+编辑 `.initial/config/opencode/opencode.json` 添加或修改模型：
+
+```json
 {
-  provider: {
-    openrouter: {
-      models: {
-        anthropic/claude-sonnet-4.5: {
-          name: Claude Sonnet 4.5,
-          attachment: true,
-          limit: {
-            context: 200000,
-            output: 32000
+  "provider": {
+    "openrouter": {
+      "models": {
+        "anthropic/claude-sonnet-4.5": {
+          "name": "Claude Sonnet 4.5",
+          "attachment": true,
+          "limit": {
+            "context": 200000,
+            "output": 32000
           }
         },
-        google/gemini-3-pro-preview: {
-          name: Gemini 3 Pro Preview,
-          thinking: true,
-          attachment: true,
-          limit: {
-            context: 1048576,
-            output: 65535
+        "google/gemini-3-pro-preview": {
+          "name": "Gemini 3 Pro Preview",
+          "thinking": true,
+          "attachment": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65535
           }
         }
       }
     }
   }
 }
-代理配置
-自定义代理模型：
-编辑 .initial/config/opencode/oh-my-opencode-slim.json：
+```
+
+### 代理配置
+
+**自定义代理模型：**
+
+编辑 `.initial/config/opencode/oh-my-opencode-slim.json`：
+
+```json
 {
-  preset: strongest-coding-2026-optimized,
-  presets: {
-    strongest-coding-2026-optimized: {
-      orchestrator: {
-        model: openrouter/anthropic/claude-sonnet-4.5,
-        temperature: 0.7,
-        variant: high
+  "preset": "strongest-coding-2026-optimized",
+  "presets": {
+    "strongest-coding-2026-optimized": {
+      "orchestrator": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "temperature": 0.7,
+        "variant": "high"
       },
-      oracle: {
-        model: openrouter/anthropic/claude-opus-4.5,
-        temperature: 0.3,
-        variant: high
+      "oracle": {
+        "model": "openrouter/anthropic/claude-opus-4.5",
+        "temperature": 0.3,
+        "variant": "high"
       }
       // ... 其他代理
     }
   }
 }
-创建自定义预设：
+```
+
+**创建自定义预设：**
+
 添加你自己的预设配置：
+
+```json
 {
-  preset: my-custom-preset,
-  presets: {
-    my-custom-preset: {
-      orchestrator: {
-        model: openrouter/anthropic/claude-sonnet-4.5,
-        skills: [*],
-        mcps: [websearch]
+  "preset": "my-custom-preset",
+  "presets": {
+    "my-custom-preset": {
+      "orchestrator": {
+        "model": "openrouter/anthropic/claude-sonnet-4.5",
+        "skills": ["*"],
+        "mcps": ["websearch"]
       }
       // ... 配置其他代理
     }
   }
 }
+```
+
 ---
-💡 使用示例
-基本工作流
-1. 开始编码会话
-      我需要构建一个用户认证的 REST API
-   
-2. Orchestrator 分析并委派
+
+## 💡 使用示例
+
+### 基本工作流
+
+**1. 开始编码会话**
+
+```
+我需要构建一个用户认证的 REST API
+```
+
+**2. Orchestrator 分析并委派**
    - 调用 Librarian 研究最佳实践
    - 调用 Fixer 实现代码
    - 调用 Oracle 审查安全性
-3. 审查和迭代
-      能否为登录端点添加速率限制？
-   
-高级用法
-并行研究：
+
+**3. 审查和迭代**
+
+```
+能否为登录端点添加速率限制？
+```
+
+### 高级用法
+
+**并行研究：**
+
+```
 同时研究这三个主题：
 1. JWT vs 基于会话的认证
 2. 速率限制策略
 3. 密码哈希最佳实践
-UI/UX 工作：
+```
+
+**UI/UX 工作：**
+
+```
 设计一个支持暗黑模式的现代登录页面
+```
 → 自动路由到 Designer 代理
-深度调试：
+
+**深度调试：**
+
+```
 这个认证 bug 只在生产环境出现。帮我调试。
+```
 → 升级到 Oracle 进行深度分析
+
 ---
-🔧 高级配置
-自定义技能
-添加自定义技能到 .initial/claude/skills/：
+
+## 🔧 高级配置
+
+### 自定义技能
+
+添加自定义技能到 `.initial/claude/skills/`：
+
+```
 .initial/claude/skills/
 └── my-custom-skill/
     ├── SKILL.md          # 技能定义
     └── README.md         # 文档
+```
+
 技能会在容器启动时自动加载。
-Tmux 集成
+
+### Tmux 集成
+
 启用实时代理监控：
-编辑 .initial/config/opencode/oh-my-opencode-slim.json：
+
+编辑 `.initial/config/opencode/oh-my-opencode-slim.json`：
+
+```json
 {
-  tmux: {
-    enabled: true,
-    layout: main-vertical,
-    main_pane_size: 60
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60
   }
 }
-详见 oh-my-opencode-slim tmux 文档 (https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/tmux-integration.md)。
-MCP 服务器配置
+```
+
+详见 [oh-my-opencode-slim tmux 文档](https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/tmux-integration.md)。
+
+### MCP 服务器配置
+
 通过 MCP 服务器启用额外能力：
+
+```json
 {
-  mcp: {
-    tavily: {
-      api_key: tvly-你的API密钥
+  "mcp": {
+    "tavily": {
+      "api_key": "tvly-你的API密钥"
     },
-    firecrawl: {
-      api_key: fc-你的API密钥
+    "firecrawl": {
+      "api_key": "fc-你的API密钥"
     }
   }
 }
-可用的 MCP 服务器：
+```
+
+**可用的 MCP 服务器：**
 - websearch（Exa）- 内置 Web 搜索
 - sequential-thinking - 结构化问题解决
 - tavily - 高级 Web 搜索和爬取
 - firecrawl - Web 抓取
 - filesystem - 本地文件访问
+
 ---
-🐛 故障排查
-端口已被占用
-错误： Bind for 0.0.0.0:8080 failed: port is already allocated
-解决方案： 在 .env 中更改端口：
+
+## 🐛 故障排查
+
+### 端口已被占用
+
+**错误：** `Bind for 0.0.0.0:8080 failed: port is already allocated`
+
+**解决方案：** 在 `.env` 中更改端口：
+
+```env
 CODENOMAD_PORT=28080
+```
+
 然后重启：
+
+```bash
 docker-compose down
 docker-compose up -d
-认证失败
-错误： 无法使用用户名/密码登录
-解决方案： 
-1. 检查 .env 中的 CODENOMAD_PASSWORD 是否正确
+```
+
+### 认证失败
+
+**错误：** 无法使用用户名/密码登录
+
+**解决方案：**
+1. 检查 `.env` 中的 `CODENOMAD_PASSWORD` 是否正确
 2. 重启容器：
-      docker-compose restart
-   
-代理无响应
-错误： 代理不响应或超时
-解决方案：
-1. 检查 .initial/config/auth/auth.json 中的 OpenRouter API 密钥
+   ```bash
+   docker-compose restart
+   ```
+
+### 代理无响应
+
+**错误：** 代理不响应或超时
+
+**解决方案：**
+1. 检查 `.initial/config/auth/auth.json` 中的 OpenRouter API 密钥
 2. 验证 API 密钥有额度：https://openrouter.ai/credits
 3. 查看日志：
-      docker-compose logs -f codenomad
-   
-模型 API 错误
-错误： Model not found 或 Insufficient credits
-解决方案：
+   ```bash
+   docker-compose logs -f codenomad
+   ```
+
+### 模型 API 错误
+
+**错误：** Model not found 或 Insufficient credits
+
+**解决方案：**
 1. 验证配置中的模型名称与 OpenRouter 模型匹配
 2. 检查 OpenRouter 额度
 3. 在代理配置中切换到不同模型
-容器无法启动
-错误： 容器立即退出
-解决方案：
+
+### 容器无法启动
+
+**错误：** 容器立即退出
+
+**解决方案：**
 1. 查看日志：
-      docker-compose logs codenomad
-   2. 验证所有必需文件存在：
-   - .initial/config/auth/auth.json
-   - .env
+   ```bash
+   docker-compose logs codenomad
+   ```
+2. 验证所有必需文件存在：
+   - `.initial/config/auth/auth.json`
+   - `.env`
 3. 重新构建镜像：
-      docker-compose build --no-cache
+   ```bash
+   docker-compose build --no-cache
    docker-compose up -d
-   
+   ```
+
 ---
-📚 使用场景
-个人开发者
+
+## 📚 使用场景
+
+### 个人开发者
 - 快速原型：Orchestrator + Fixer 快速实现
 - 学习：Explorer 帮助理解陌生代码库
 - 代码审查：Oracle 提供专家级反馈
-团队
+
+### 团队
 - 新人入职：新开发者使用 Explorer 理解代码库
 - 架构决策：Oracle 提供战略指导
 - 文档：Writer + Editor 创建和维护文档
-组织
+
+### 组织
 - 自托管：完全控制数据和基础设施
 - 成本控制：按任务类型优化模型使用
 - 定制化：为你的技术栈定制代理
-内容创作者
+
+### 内容创作者
 - 研究：Researcher + Librarian 收集信息
 - 写作：Writer 起草，Editor 润色
 - 事实核查：Fact-checker 验证来源
+
 ---
-🔄 更新
-更新 Docker 镜像
+
+## 🔄 更新
+
+### 更新 Docker 镜像
+
+```bash
 # 拉取最新更改
 git pull
+
 # 重新构建并重启
 docker-compose build --no-cache
 docker-compose up -d
-更新插件
+```
+
+### 更新插件
+
 插件在镜像构建时安装。要更新：
+
+```bash
 # 编辑 Dockerfile 指定版本
 # RUN bun add -g oh-my-opencode-slim@1.2.3
+
 # 重新构建
 docker-compose build --no-cache
 docker-compose up -d
+```
+
 ---
-🤝 贡献
+
+## 🤝 贡献
 欢迎贡献！请：
 1. Fork 仓库
 2. 创建功能分支
 3. 进行更改
 4. 提交 pull request
-对于 bug 或功能请求，请提交 issue (https://github.com/monaviaio/aide/issues)。
+
+对于 bug 或功能请求，请[提交 issue](https://github.com/monaviaio/aide/issues)。
+
 ---
-📄 许可证
-MIT 许可证 - 详见 LICENSE (LICENSE)。
+
+## 📄 许可证
+
+MIT 许可证 - 详见 [LICENSE](LICENSE)。
+
 ---
-🙏 致谢
+
+## 🙏 致谢
+
 本项目集成并基于：
-- CodeNomad (https://github.com/NeuralNomadsAI) - AI 编码的 Web 界面
-- oh-my-opencode-slim (https://github.com/alvinunreal/oh-my-opencode-slim) - 多代理编排
-- newtype-profile (https://github.com/newtype-01/newtype-profile) - 配置管理
-- OpenCode (https://opencode.ai) - AI 编码平台
-- OpenRouter (https://openrouter.ai) - 统一 LLM API
+
+- [CodeNomad](https://github.com/NeuralNomadsAI) - AI 编码的 Web 界面
+- [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) - 多代理编排
+- [newtype-profile](https://github.com/newtype-01/newtype-profile) - 配置管理
+- [OpenCode](https://opencode.ai) - AI 编码平台
+- [OpenRouter](https://openrouter.ai) - 统一 LLM API
+
 特别感谢开源社区让这一切成为可能。
+
 ---
-📞 支持
-- 问题反馈：GitHub Issues (https://github.com/monaviaio/aide/issues)
-- 讨论：GitHub Discussions (https://github.com/monaviaio/aide/discussions)
-- 文档：Wiki (https://github.com/monaviaio/aide/wiki)
+
+## 📞 支持
+
+- **问题反馈：** [GitHub Issues](https://github.com/monaviaio/aide/issues)
+- **讨论：** [GitHub Discussions](https://github.com/monaviaio/aide/discussions)
+- **文档：** [Wiki](https://github.com/monaviaio/aide/wiki)
+
 ---
+
 <div align="center">
+
 由 Monavia 团队用 ❤️ 构建
-如果觉得有用，请 ⭐ Star 这个仓库 (https://github.com/monaviaio/aide)！
+
+[⭐ Star 这个仓库](https://github.com/monaviaio/aide) 如果觉得有用！
+
 </div>
